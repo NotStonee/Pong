@@ -9,13 +9,14 @@ public class ballMovement: MonoBehaviour
   public float verticalSpeed;
   private System.Random random;
   public gameInfo logic;
+  public float displacement; // to stop the ball from constantly colliding with the player
   // Start is called before the first frame update
   void Start() 
   {
     random = new System.Random();
     rb = GetComponent <Rigidbody2D> ();
     int horizontal = Random.Range(0, 2) == 0 ? -1 : 1;
-    int vertical = Random.Range(0, 2) == 0 ? -1 : 1;
+    float vertical = Random.Range(0, 2) > 1 ? Random.Range(-1f, -0.5f) : Random.Range(1f, 0.5f);
     rb.velocity = new Vector2(speed * horizontal, verticalSpeed * vertical);
   }
 
@@ -30,6 +31,15 @@ public class ballMovement: MonoBehaviour
     switch (collision.gameObject.tag) 
     {
     case "Player":
+      if (transform.position.x < 0)
+      {
+        transform.position = new Vector3(transform.position.x + displacement, transform.position.y);
+      }
+
+      else if (transform.position.x > 0)
+      {
+        transform.position = new Vector3(transform.position.x - displacement, transform.position.y);
+      }
       rb.velocity = new Vector2(rb.velocity.x * -1, rb.velocity.y);
       break;
 
@@ -40,14 +50,14 @@ public class ballMovement: MonoBehaviour
     case "Out1":
       logic.addPlayer2Score();
       ResetBall();
-      int vertical = Random.Range(0, 2) == 0 ? -1 : 1;
+      float vertical = Random.Range(0, 2) > 1 ? Random.Range(-1f, -0.5f) : Random.Range(1f, 0.5f);
       rb.velocity = new Vector2(-speed, verticalSpeed * vertical);
       break;
 
     case "Out2":
       logic.addPlayer1Score();
       ResetBall();
-      vertical = Random.Range(0, 2) == 0 ? -1 : 1;
+      vertical = Random.Range(0, 2) > 1 ? Random.Range(-1f, -0.5f) : Random.Range(1f, 0.5f);
       rb.velocity = new Vector2(speed, verticalSpeed * vertical);
       break;
     }

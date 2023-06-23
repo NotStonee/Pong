@@ -15,12 +15,19 @@ public class P2Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     if (Input.GetKey(KeyCode.UpArrow)) {
+      if (Input.GetKey(KeyCode.UpArrow)) 
+      {
         rb.velocity = new Vector2(rb.velocity.x, speed);
-     } else if (Input.GetKey(KeyCode.DownArrow)) {
+      }
+
+      else if (Input.GetKey(KeyCode.DownArrow)) 
+      {
         rb.velocity = new Vector2(rb.velocity.x, -speed);
-     }  else if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow)) {
+      }
+
+      else if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow)) 
+      {
         rb.velocity = new Vector2(rb.velocity.x, 0);
-     }
+      }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class P1Movement : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public float speed;
     // Start is called before the first frame update
     void Start()
@@ -15,12 +15,19 @@ public class P1Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     if (Input.GetKey(KeyCode.W)) {
+      if (Input.GetKey(KeyCode.W))
+      {
         rb.velocity = new Vector2(rb.velocity.x, speed);
-     } else if (Input.GetKey(KeyCode.S)) {
+      }
+
+      else if (Input.GetKey(KeyCode.S))
+      {
         rb.velocity = new Vector2(rb.velocity.x, -speed);
-     } else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
+      }
+      
+      else if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+      {
         rb.velocity = new Vector2(rb.velocity.x, 0);
-     }
+      }
     }
 }
