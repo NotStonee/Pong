@@ -40,6 +40,7 @@ public class ballMovement: MonoBehaviour
       {
         transform.position = new Vector3(transform.position.x - displacement, transform.position.y);
       }
+      rb.velocity = new Vector2(rb.velocity.x/10 + rb.velocity.x, rb.velocity.y);
       rb.velocity = new Vector2(rb.velocity.x * -1, rb.velocity.y);
       break;
 
